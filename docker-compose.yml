@@ -1,0 +1,55 @@
+services:
+    # SERVIÇO 1: PHP + Apache (Aplicação Laravel)
+    app:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+        container_name: laravel_app
+        restart: unless-stopped
+        working_dir: /var/www/html
+        ports:
+            - "8080:80"
+            - "5173:5173" # Porta do Vite para Hot Reload
+        volumes:
+            - .:/var/www/html
+        depends_on:
+            - mysql
+        networks:
+            - laravel_network
+
+    # SERVIÇO 2: MySQL
+    mysql:
+        image: mysql:8.0
+        container_name: laravel_db
+        restart: unless-stopped
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_DATABASE: ${DB_DATABASE}
+        volumes:
+            - db_data:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        networks:
+            - laravel_network
+
+    # SERVIÇO 3: phpMyAdmin
+    phpmyadmin:
+        image: phpmyadmin:latest
+        container_name: laravel_phpmyadmin
+        links:
+            - mysql
+        environment:
+            PMA_HOST: mysql
+            PMA_USER: root
+            PMA_PASSWORD: ""
+        ports:
+            - "8081:80"
+        networks:
+            - laravel_network
+
+volumes:
+    db_data:
+
+networks:
+    laravel_network:
+        driver: bridge
