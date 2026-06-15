@@ -20,13 +20,17 @@ class CategoriaController extends Controller
     }
 
     public function store(Request $request)
-    {
-        Categoria::create([
-            'nome' => $request->nome
-        ]);
+{
+    $request->validate([
+        'nome' => 'required|max:255'
+    ]);
 
-        return redirect()->route('categorias.index');
-    }
+    Categoria::create([
+        'nome' => $request->nome
+    ]);
+
+    return redirect()->route('categorias.index');
+}
 
     public function show(Categoria $categoria)
     {
@@ -39,13 +43,17 @@ class CategoriaController extends Controller
     }
 
     public function update(Request $request, Categoria $categoria)
-    {
-        $categoria->update([
-            'nome' => $request->nome
-        ]);
+{
+    $request->validate([
+        'nome' => 'required|max:255'
+    ]);
 
-        return redirect()->route('categorias.index');
-    }
+    $categoria->update([
+        'nome' => $request->nome
+    ]);
+
+    return redirect()->route('categorias.index');
+}
 
     public function destroy(Categoria $categoria)
     {

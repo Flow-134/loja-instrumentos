@@ -8,10 +8,10 @@ class Categoria extends Model
 {
     protected $fillable = ['nome'];
 
-    public function instrumentos()
-    {
-        return $this->hasMany(Instrumentos::class);
-    }
+    // public function instrumentos()
+    // {
+    //     return $this->hasMany(Instrumentos::class);
+    // }
 }
     
     

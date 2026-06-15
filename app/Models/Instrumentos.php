@@ -19,8 +19,4 @@ class Instrumentos extends Model
         return $this->belongsTo(Categoria::class);
     }
 
-    public function instrumentos()
-    {
-        return $this->hasMany(Instrumentos::class);
-    }
 }

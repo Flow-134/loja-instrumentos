@@ -51,24 +51,38 @@ class InstrumentosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Instrumentos $instrumentos)
-    {
-        //
-    }
+    public function edit(Instrumentos $instrumento)
+{
+    $categorias = Categoria::all();
+
+    return view(
+        'instrumentos.edit',
+        compact('instrumento', 'categorias')
+    );
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Instrumentos $instrumentos)
-    {
-        //
-    }
+    public function update(Request $request, Instrumentos $instrumento)
+{
+    $instrumento->update([
+        'nome' => $request->nome,
+        'marca' => $request->marca,
+        'preco' => $request->preco,
+        'categoria_id' => $request->categoria_id,
+    ]);
+
+    return redirect()->route('instrumentos.index');
+}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Instrumentos $instrumentos)
-    {
-        //
-    }
+    public function destroy(Instrumentos $instrumento)
+{
+    $instrumento->delete();
+
+    return redirect()->route('instrumentos.index');
+}
 }
