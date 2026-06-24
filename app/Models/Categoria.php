@@ -8,10 +8,17 @@ class Categoria extends Model
 {
     protected $fillable = ['nome'];
 
-    // public function instrumentos()
-    // {
-    //     return $this->hasMany(Instrumentos::class);
-    // }
+    use App\Models\Categoria;
+
+public function edit(Instrumentos $instrumento)
+{
+    $categorias = Categoria::all();
+
+    return view(
+        'instrumentos.edit',
+        compact('instrumento', 'categorias')
+    );
+}
 }
     
     
