@@ -6,9 +6,13 @@ use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
+
 {
+    
     public function index()
     {
+        if (!session()->has('cliente_id')) {
+        return redirect()->route('login');}
         $categorias = Categoria::all();
 
         return view('categorias.index', compact('categorias'));

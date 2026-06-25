@@ -38,6 +38,12 @@
         placeholder="Telefone"
         class="w-full bg-black border border-orange-500 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
     />
+    <input
+    type="password"
+    name="senha"
+    placeholder="Senha"
+    class="w-full bg-black border border-orange-500 text-white px-4 py-3 rounded-lg"
+/>
 
     <div class="flex justify-between pt-4">
 

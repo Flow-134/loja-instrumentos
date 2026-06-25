@@ -6,12 +6,15 @@ use App\Models\Instrumentos;
 use Illuminate\Http\Request;
 
 class InstrumentosController extends Controller
+
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        if (!session()->has('cliente_id')) {
+        return redirect()->route('login');}
         $instrumentos = Instrumentos::with('categoria')->get();
 
         return view('instrumentos.index', compact('instrumentos'));

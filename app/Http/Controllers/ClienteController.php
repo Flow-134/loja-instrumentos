@@ -1,14 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
+
 {
     public function index()
     {
+        if (!session()->has('cliente_id')) {
+        return redirect()->route('login'); }
         $clientes = Cliente::all();
 
         return view('clientes.index', compact('clientes'));
@@ -20,16 +23,23 @@ class ClienteController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nome' => 'required',
-            'email' => 'required|email',
-            'telefone' => 'required'
-        ]);
+{
+    $request->validate([
+        'nome' => 'required',
+        'email' => 'required|email',
+        'telefone' => 'required',
+        'senha' => 'required'
+    ]);
 
-        Cliente::create($request->all());
+    Cliente::create([
+        'nome' => $request->nome,
+        'email' => $request->email,
+        'telefone' => $request->telefone,
+        'senha' => bcrypt($request->senha)
+    ]);
 
-        return redirect()->route('clientes.index');
+    return redirect()->route('clientes.index');
+}
     }
 
     public function edit(Cliente $cliente)
@@ -50,4 +60,3 @@ class ClienteController extends Controller
 
         return redirect()->route('clientes.index');
     }
-}
