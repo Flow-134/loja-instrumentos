@@ -6,7 +6,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\InstrumentosController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('clientes');
 });
 
 Route::resource('categorias', CategoriaController::class);

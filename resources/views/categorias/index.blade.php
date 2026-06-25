@@ -20,8 +20,7 @@
             </h1>
 
             <a
-                href="{{ route('categorias.create') }}"
-                class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg transition duration-300"
+                href="{{ route('categorias.create') }}" class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg transition duration-300"
             >
                 + Nova Categoria
             </a>

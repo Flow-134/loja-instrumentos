@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://potential-guide-5g5wqwq74q7wc74w6-8080.app.github.dev'),
 
     /*
     |--------------------------------------------------------------------------
