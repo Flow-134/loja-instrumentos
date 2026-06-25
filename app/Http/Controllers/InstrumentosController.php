@@ -25,6 +25,10 @@ class InstrumentosController extends Controller
      */
     public function create()
     {
+        if (!session()->has('cliente_id')) {
+            return redirect()->route('login');
+        }
+
         $categorias = Categoria::all();
         return view('instrumentos.create', compact('categorias'));
     }
@@ -34,6 +38,10 @@ class InstrumentosController extends Controller
      */
     public function store(Request $request)
     {
+        if (!session()->has('cliente_id')) {
+            return redirect()->route('login');
+        }
+
         Instrumentos::create([
             'nome' => $request->nome,
             'marca' => $request->marca,
@@ -48,7 +56,11 @@ class InstrumentosController extends Controller
      */
     public function show(Instrumentos $instrumentos)
     {
-        //
+        if (!session()->has('cliente_id')) {
+            return redirect()->route('login');
+        }
+
+        return view('instrumentos.show', compact('instrumentos'));
     }
 
     /**
@@ -56,6 +68,10 @@ class InstrumentosController extends Controller
      */
     public function edit(Instrumentos $instrumento)
 {
+    if (!session()->has('cliente_id')) {
+        return redirect()->route('login');
+    }
+
     $categorias = Categoria::all();
 
     return view(
@@ -69,6 +85,10 @@ class InstrumentosController extends Controller
      */
     public function update(Request $request, Instrumentos $instrumento)
 {
+    if (!session()->has('cliente_id')) {
+        return redirect()->route('login');
+    }
+
     $instrumento->update([
         'nome' => $request->nome,
         'marca' => $request->marca,
@@ -84,6 +104,10 @@ class InstrumentosController extends Controller
      */
     public function destroy(Instrumentos $instrumento)
 {
+    if (!session()->has('cliente_id')) {
+        return redirect()->route('login');
+    }
+
     $instrumento->delete();
 
     return redirect()->route('instrumentos.index');

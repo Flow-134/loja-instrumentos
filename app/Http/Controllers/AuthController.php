@@ -30,7 +30,7 @@ class AuthController extends Controller
             'cliente_nome' => $cliente->nome
         ]);
 
-        return redirect()->route('clientes.index');
+        return redirect()->route('home');
     }
 
     public function logout()

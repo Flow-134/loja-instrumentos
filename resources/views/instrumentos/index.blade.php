@@ -13,9 +13,18 @@
 
     <div class="flex justify-between items-center mb-8">
 
-        <h1 class="text-4xl font-bold text-orange-500">
-            🎸 Instrumentos
-        </h1>
+        <div class="flex items-center gap-4">
+            <a
+                href="{{ route('home') }}"
+                class="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg transition"
+            >
+                ← Voltar ao Início
+            </a>
+
+            <h1 class="text-4xl font-bold text-orange-500">
+                🎸 Instrumentos
+            </h1>
+        </div>
 
         <a
             href="{{ route('instrumentos.create') }}"

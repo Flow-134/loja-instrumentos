@@ -20,11 +20,19 @@ class CategoriaController extends Controller
 
     public function create()
     {
+        if (!session()->has('cliente_id')) {
+            return redirect()->route('login');
+        }
+
         return view('categorias.create');
     }
 
     public function store(Request $request)
 {
+    if (!session()->has('cliente_id')) {
+        return redirect()->route('login');
+    }
+
     $request->validate([
         'nome' => 'required|max:255'
     ]);
@@ -38,16 +46,28 @@ class CategoriaController extends Controller
 
     public function show(Categoria $categoria)
     {
+        if (!session()->has('cliente_id')) {
+            return redirect()->route('login');
+        }
+
         return view('categorias.show', compact('categoria'));
     }
 
     public function edit(Categoria $categoria)
     {
+        if (!session()->has('cliente_id')) {
+            return redirect()->route('login');
+        }
+
         return view('categorias.edit', compact('categoria'));
     }
 
     public function update(Request $request, Categoria $categoria)
 {
+    if (!session()->has('cliente_id')) {
+        return redirect()->route('login');
+    }
+
     $request->validate([
         'nome' => 'required|max:255'
     ]);
@@ -61,6 +81,10 @@ class CategoriaController extends Controller
 
     public function destroy(Categoria $categoria)
     {
+        if (!session()->has('cliente_id')) {
+            return redirect()->route('login');
+        }
+
         $categoria->delete();
 
         return redirect()->route('categorias.index');

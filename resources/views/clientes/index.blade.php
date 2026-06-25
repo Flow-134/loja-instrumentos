@@ -14,9 +14,18 @@
 
         <div class="flex justify-between items-center mb-6">
 
-            <h1 class="text-4xl font-bold text-orange-500">
-             Clientes
-            </h1>
+            <div class="flex items-center gap-4">
+                <a
+                    href="{{ route('home') }}"
+                    class="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg transition"
+                >
+                    ← Voltar ao Início
+                </a>
+
+                <h1 class="text-4xl font-bold text-orange-500">
+                 Clientes
+                </h1>
+            </div>
 
             <a
                 href="{{ route('clientes.create') }}"
